@@ -8,7 +8,17 @@
     <div class="menu" v-show="menuShow">
       <ul>
         <li v-for="item in menuList" :key="item.id">
-          <input type="checkbox">
+          <input type="checkbox" @click="setChecked(item)" :checked="getChecked(item.id)">
+          <span>{{item.name}}</span>
+          <span>{{item.score}}</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="check-list">
+      <ul>
+        <li v-for="item in checkedList" :key="item.id">
+          <input type="checkbox" @click="setChecked(item)" :checked='true'>
           <span>{{item.name}}</span>
           <span>{{item.score}}</span>
         </li>
@@ -26,7 +36,8 @@
         searchedScore: 0,
         filterReg: 'up',
         menuShow: "false",
-        menuList: []
+        menuList: [],
+        checkedList: []
       }
     },
     methods: {
@@ -37,6 +48,19 @@
       setFilterReg(reg) {
         this.filterReg = reg
         this.filterStudents()
+      },
+      getChecked(id) {
+        return this.checkedList.some(item => item.id === id)
+      },
+      setChecked(info) {
+        const hasThisItem = this.getChecked(info.id)
+
+        if (hasThisItem) {
+          this.checkedList = this.checkedList.filter(item =>
+            (item.id != info.id))
+        } else {
+          this.checkedList.push(info)
+        }
       },
       filterStudents() {
         console.log(students);
@@ -55,7 +79,6 @@
             break
         }
         this.menuShow = this.menuList.length > 0
-        console.log(this.menuList);
       }
     },
   }
