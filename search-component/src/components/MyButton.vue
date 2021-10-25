@@ -1,7 +1,7 @@
 <template>
-  <div class="my-buttom">
-    <button class="['my-btn',type,{active:active}]"></button>
-  </div>
+  <button :class="['my-btn', type, { active }]">
+    <slot></slot>
+  </button>
 </template>
 
 <script>
@@ -13,10 +13,10 @@ export default {
       validator(value) {
         return ["primary", "success", "danger", "waring"].includes(value);
       },
-      active: {
-        type: Boolean,
-        default: false,
-      },
+    },
+    active: {
+      type: Boolean,
+      default: false,
     },
   },
 };
