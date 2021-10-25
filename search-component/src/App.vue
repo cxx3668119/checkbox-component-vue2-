@@ -6,7 +6,7 @@
 </template>
 
 <script>
-// import Demo from './components/Demo.vue'
+// import Demo from './demo/Demo.vue'
 import Search from "./components/Search.vue";
 import students from "./data/students";
 

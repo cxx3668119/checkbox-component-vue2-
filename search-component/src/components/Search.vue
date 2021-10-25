@@ -13,17 +13,23 @@
         @click="setCurrentRegular"
       ></my-button-group>
     </div>
+    <my-check-box :id="1" :checked="" @click="setChecked">
+      <span>小陈</span>
+      <span>56分</span>
+    </my-check-box>
   </div>
 </template>
 
 <script>
 import MyButtonGroup from "./MyButtonGroup.vue";
+import MyCheckBox from "./MyCheckBox.vue";
 import MyInput from "./MyInput.vue";
 export default {
   name: "Search",
   components: {
     MyInput,
     MyButtonGroup,
+    MyCheckBox,
   },
   data() {
     return {
